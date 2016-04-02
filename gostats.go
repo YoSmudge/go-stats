@@ -2,6 +2,7 @@ package gostats
 
 import (
   "os"
+  "fmt"
   "strings"
   "regexp"
   "time"
@@ -126,6 +127,8 @@ func cgoCalls() map[string]float64{
 }
 
 var lastGcPause float64
+var lastGcTime uint64
+var lastGcPeriod float64
 
 func gcs() map[string]float64{
   m := runtime.MemStats{}
@@ -135,9 +138,21 @@ func gcs() map[string]float64{
     lastGcPause = gcPause
   }
 
+  if m.LastGC > lastGcTime{
+    lastGcPeriod = float64(m.LastGC - lastGcTime)
+    if lastGcPeriod == float64(m.LastGC){
+      lastGcPeriod = 0
+    }
+
+    lastGcPeriod = lastGcPeriod/1000000
+
+    lastGcTime = m.LastGC
+  }
+
   return map[string]float64{
     "gc.perSecond": perSecondCounter("gcs-total", int64(m.NumGC)),
     "gc.pauseTimeNs": lastGcPause,
     "gc.pauseTimeMs": lastGcPause/float64(1000000),
+    "gc.period": lastGcPeriod,
   }
 }
