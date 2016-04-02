@@ -36,7 +36,7 @@ func TestNew(t *testing.T){
   assert.Equal(t, "gostats", s.ClientName, "default client name should be set")
 
   s.Hostname = "localhost"
-  assert.Equal(t, "gostats.localhost", s.MetricBase(), "metric base should be correct")
+  assert.Equal(t, "gostats.gostats.localhost.", s.MetricBase(), "metric base should be correct")
 }
 
 func TestStart(t *testing.T){
@@ -46,7 +46,7 @@ func TestStart(t *testing.T){
   assert.Nil(t, err)
 
   s.Hostname = "localhost"
-  assert.Equal(t, "testclient.localhost", s.MetricBase(), "metric base should be correct")
+  assert.Equal(t, "gostats.testclient.localhost.", s.MetricBase(), "metric base should be correct")
   assert.Equal(t, time.Duration(5*time.Second), s.PushInterval, "push interval should be correct")
   assert.Equal(t, "localhost:8015", s.StatsdHost, "statsd host should be correct")
 }
