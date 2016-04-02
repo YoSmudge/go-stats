@@ -2,5 +2,3 @@ package: github.com/samarudge/go-stats
 import:
 - package: github.com/quipo/statsd
 - package: github.com/stretchr/testify
-- package: github.com/Sirupsen/logrus
-- package: github.com/dustin/go-humanize
