@@ -14,3 +14,6 @@ allow_failures:
 
 script:
   - go test -v ./
+
+env:
+  - "GO15VENDOREXPERIMENT=1"
