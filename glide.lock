@@ -1,0 +1,18 @@
+hash: ca50f3311fbd74b2d17f073f0ad62f4c2d9784dee61f0760cd5817128923253c
+updated: 2016-03-28T15:57:50.193502726+01:00
+imports:
+- name: github.com/dustin/go-humanize
+  version: 8929fe90cee4b2cb9deb468b51fb34eba64d1bf0
+- name: github.com/quipo/statsd
+  version: 494c2067718d0c58116be15337f466e393273617
+  subpackages:
+  - event
+- name: github.com/Sirupsen/logrus
+  version: 4b6ea7319e214d98c938f12692336f7ca9348d6b
+- name: github.com/stretchr/testify
+  version: 6fe211e493929a8aac0469b93f28b1d0688a9a3a
+- name: golang.org/x/sys
+  version: 320cb01ddbbf0473674c2585f9b6e245721de355
+  subpackages:
+  - unix
+devImports: []
