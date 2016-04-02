@@ -1,0 +1,13 @@
+language: go
+
+go:
+  - 1.5
+  - 1.6
+  - tip
+
+install:
+  - go get github.com/Masterminds/glide
+  - ${GOPATH}/bin/glide install
+
+allow_failures:
+  - go: tip
