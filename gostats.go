@@ -38,7 +38,7 @@ func New() *GoStats{
   host, _ := os.Hostname()
   s.Hostname = sanitizeMetricName(host)
 
-  s.Collectors = collectorList{s.memStats, s.goRoutines, s.cgoCalls, s.gcs}
+  s.Collectors = collectorList{memStats, goRoutines, cgoCalls, gcs}
 
   return &s
 }
@@ -97,7 +97,7 @@ func (s *GoStats) doSend(b *statsd.StatsdBuffer){
   }
 }
 
-func (s *GoStats) memStats() map[string]float64{
+func memStats() map[string]float64{
   m := runtime.MemStats{}
   runtime.ReadMemStats(&m)
   metrics := map[string]float64{
@@ -113,13 +113,13 @@ func (s *GoStats) memStats() map[string]float64{
   return metrics
 }
 
-func (s *GoStats) goRoutines() map[string]float64{
+func goRoutines() map[string]float64{
   return map[string]float64{
     "goroutines.total": float64(runtime.NumGoroutine()),
   }
 }
 
-func (s *GoStats) cgoCalls() map[string]float64{
+func cgoCalls() map[string]float64{
   return map[string]float64{
     "cgo.calls": perSecondCounter("cgoCalls", runtime.NumCgoCall()),
   }
@@ -127,7 +127,7 @@ func (s *GoStats) cgoCalls() map[string]float64{
 
 var lastGcPause float64
 
-func (s *GoStats) gcs() map[string]float64{
+func gcs() map[string]float64{
   m := runtime.MemStats{}
   runtime.ReadMemStats(&m)
   gcPause := float64(m.PauseNs[(m.NumGC+255)%256])

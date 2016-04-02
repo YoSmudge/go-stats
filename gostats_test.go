@@ -3,6 +3,7 @@ package gostats
 import(
   "testing"
   "os"
+  "fmt"
   "time"
   "github.com/stretchr/testify/assert"
 )
@@ -49,4 +50,46 @@ func TestStart(t *testing.T){
   assert.Equal(t, "gostats.testclient.localhost.", s.MetricBase(), "metric base should be correct")
   assert.Equal(t, time.Duration(5*time.Second), s.PushInterval, "push interval should be correct")
   assert.Equal(t, "localhost:8015", s.StatsdHost, "statsd host should be correct")
+}
+
+func returnsKeys(t *testing.T, expectedKeys []string, response map[string]float64){
+  for _,k := range expectedKeys{
+    _, found := response[k]
+    assert.True(t, found, fmt.Sprintf("Should expose metric %s", k))
+  }
+}
+
+func TestMemStats(t *testing.T){
+  returnsKeys(t, []string{
+    "memory.objects.HeapObjects",
+    "memory.summary.Alloc",
+    "memory.counters.Mallocs",
+    "memory.counters.Frees",
+    "memory.summary.System",
+    "memory.heap.Idle",
+    "memory.heap.InUse",
+  }, memStats())
+}
+
+func TestGoRoutines(t *testing.T){
+  returnsKeys(t, []string{
+    "goroutines.total",
+  }, goRoutines())
+}
+
+func TestCgoCalls(t *testing.T){
+  returnsKeys(t, []string{
+    "cgo.calls",
+  }, cgoCalls())
+}
+
+func TestGcs(t *testing.T){
+  gcs := gcs()
+  returnsKeys(t, []string{
+    "gc.perSecond",
+    "gc.pauseTimeNs",
+    "gc.pauseTimeMs",
+  }, gcs)
+
+  assert.Equal(t, gcs["gc.pauseTimeNs"]/float64(1000000), gcs["gc.pauseTimeMs"], "Pause time NS should convert to MS")
 }
