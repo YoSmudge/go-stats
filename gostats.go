@@ -2,7 +2,6 @@ package gostats
 
 import (
   "os"
-  "fmt"
   "strings"
   "regexp"
   "time"
