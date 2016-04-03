@@ -13,6 +13,7 @@ allow_failures:
   - go: tip
 
 script:
+  - set -x
   - go build
   - go test -v ./
   - "GOFMT_FAILS=$(gofmt -l $(find . -path ./vendor -prune -o -name '*.go' -print))"
