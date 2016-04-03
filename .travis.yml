@@ -13,7 +13,9 @@ allow_failures:
   - go: tip
 
 script:
+  - go build
   - go test -v ./
+  - gofmt -l -d ./*.go
 
 env:
   - "GO15VENDOREXPERIMENT=1"
