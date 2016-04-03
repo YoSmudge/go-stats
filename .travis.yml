@@ -15,7 +15,7 @@ allow_failures:
 script:
   - go build
   - go test -v ./
-  - gofmt -l -d ./*.go
+  - "! gofmt -l $(find . -path ./vendor -prune -o -name '*.go' -print) | read nothing"
 
 env:
   - "GO15VENDOREXPERIMENT=1"
