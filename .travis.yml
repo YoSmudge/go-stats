@@ -17,7 +17,7 @@ script:
   - go test -v ./
   - "GOFMT_FAILS=$(gofmt -l $(find . -path ./vendor -prune -o -name '*.go' -print))"
   - "echo -e ${GOFMT_FAILS}"
-  - "test $(echo -e \"${GOFMT_FAILS}\" | wc -l) -eq 0"
+  - "test $(echo -en \"${GOFMT_FAILS}\" | wc -l) -eq 0"
 
 env:
   - "GO15VENDOREXPERIMENT=1"
