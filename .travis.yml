@@ -13,11 +13,7 @@ allow_failures:
   - go: tip
 
 script:
-  - go build
-  - go test -v ./
-  - "GOFMT_FAILS=$(gofmt -l $(find . -path ./vendor -prune -o -name '*.go' -print))"
-  - "echo -e ${GOFMT_FAILS}"
-  - "test $(echo -en \"${GOFMT_FAILS}\" | wc -l) -eq 0"
+  - make test
 
 env:
   - "GO15VENDOREXPERIMENT=1"
