@@ -1,10 +1,24 @@
-hash: dff75a8849900374df5538b0b9d7db2139b60baca2023e579c642ecfe0b90e07
-updated: 2016-04-02T15:55:52.84514542+01:00
+hash: 2beda8a911e8467f912452827689314f5c7a671492dab4841b12ba05d051039d
+updated: 2016-04-13T12:43:34.769266939+01:00
 imports:
+- name: github.com/davecgh/go-spew
+  version: 2df174808ee097f90d259e432cc04442cf60be21
+  subpackages:
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
 - name: github.com/quipo/statsd
   version: 494c2067718d0c58116be15337f466e393273617
   subpackages:
   - event
+- name: github.com/stretchr/objx
+  version: cbeaeb16a013161a98496fad62933b1d21786672
 - name: github.com/stretchr/testify
-  version: 6fe211e493929a8aac0469b93f28b1d0688a9a3a
+  version: f390dcf405f7b83c997eac1b06768bb9f44dec18
+  subpackages:
+  - assert
+  - http
+  - mock
 devImports: []

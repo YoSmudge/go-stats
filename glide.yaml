@@ -1,4 +1,6 @@
 package: github.com/samarudge/go-stats
 import:
 - package: github.com/quipo/statsd
+  version: 494c2067718d0c58116be15337f466e393273617
 - package: github.com/stretchr/testify
+  version: v1.1.3
